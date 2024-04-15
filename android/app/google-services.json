@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "855982703073",
+    "project_id": "thecart-4dfc5",
+    "storage_bucket": "thecart-4dfc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855982703073:android:a7db2ae8a0e73f8e6fd2a0",
+        "android_client_info": {
+          "package_name": "com.thecart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855982703073-74nof43f69rdjvatk5u3d2qenv5lmio6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thecart",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "855982703073-0v1f1f9phnm2n94cmu7kbcrkcg50jjn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3RB6-GnWzzEA2KGVE45pT8G6EBbtABZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855982703073-0v1f1f9phnm2n94cmu7kbcrkcg50jjn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
