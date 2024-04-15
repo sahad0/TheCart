@@ -1,7 +1,11 @@
-import {LOGIN_ACTIONS} from '../../../constant';
+import {LOGIN_ACTIONS, SET_PRODUCT_LIST_ACTIONS} from '../../../constant';
+import {omit} from 'lodash';
 
 const initialState = {
   auth: {},
+  productList: {},
+  cartItems: {},
+  cartItemsAsObj: {},
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -9,10 +13,35 @@ const cartReducer = (state = initialState, action) => {
     case LOGIN_ACTIONS.SET_AUTH_DETAILS: {
       return {
         ...state,
-        auth: {...action.payload},
+        auth: action.payload,
+      };
+    }
+    case SET_PRODUCT_LIST_ACTIONS.SET_ITEMS: {
+      return {
+        ...state,
+        productList: action.payload,
+      };
+    }
+    case SET_PRODUCT_LIST_ACTIONS.SET_CART_ITEMS: {
+      return {
+        ...state,
+        cartItems: Object.assign({}, state.cartItems, action.payload),
+      };
+    }
+    case SET_PRODUCT_LIST_ACTIONS.SET_PRODUCTS_AS_OBJ: {
+      return {
+        ...state,
+        cartItemsAsObj: action.payload,
+      };
+    }
+    case SET_PRODUCT_LIST_ACTIONS.REMOVE_ITEM_FROM_CART: {
+      return {
+        ...state,
+        cartItems: omit(state.cartItems, action.payload.idToRemove),
       };
     }
   }
+
   return state;
 };
 

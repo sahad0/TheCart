@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Provider store={store} stabilityCheck="true">
       <PersistGate persistor={persistor}>
-        <StatusBar hidden />
+        <StatusBar hidden={true} barStyle={'dark-content'} />
         <NavigationContainer>
           <ScreenStacks />
         </NavigationContainer>

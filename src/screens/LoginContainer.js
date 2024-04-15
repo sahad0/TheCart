@@ -6,9 +6,11 @@ import {useDispatch} from 'react-redux';
 import {COLOR, FONT_SIZE, LOGIN_ACTIONS, MARGIN} from '../../constant';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FastImage from 'react-native-fast-image';
+import {useNavigation} from '@react-navigation/native';
 
 const LoginContainer = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   GoogleSignin.configure({
     webClientId:
@@ -56,18 +58,21 @@ const LoginContainer = () => {
               backgroundColor: COLOR.DARK_PINK_OPACITY_1,
               alignItems: 'center',
             }}
-            onPress={onGoogleButtonPress()
-              .then(() => {
-                const userDetails =
-                  auth().currentUser?.['_auth']?.['_nativeModule']?.[
-                    'APP_USER'
-                  ];
-                dispatch({
-                  type: LOGIN_ACTIONS.SET_AUTH_DETAILS,
-                  payload: userDetails,
-                });
-              })
-              .catch(err => console.log(err))}>
+            onPress={() =>
+              onGoogleButtonPress()
+                .then(() => {
+                  const userDetails =
+                    auth().currentUser?.['_auth']?.['_nativeModule']?.[
+                      'APP_USER'
+                    ];
+                  dispatch({
+                    type: LOGIN_ACTIONS.SET_AUTH_DETAILS,
+                    payload: userDetails,
+                  });
+                  navigation.navigate('StoreContainer');
+                })
+                .catch(err => console.log(err))
+            }>
             <FastImage
               style={{
                 height: 90,

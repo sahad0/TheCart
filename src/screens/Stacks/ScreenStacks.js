@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginContainer from '../LoginContainer';
 import StoreContainer from '../StoreContainer';
+import ItemDetailsContainer from '../ItemDetailsContainer';
 
 const Stack = createStackNavigator();
 
@@ -12,20 +13,25 @@ const ScreenStacks = () => {
   });
 
   return (
-    <Stack.Navigator>
-      {!userAuth?.uid ? (
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginContainer}
-          options={{headerShown: false}}
-        />
-      ) : (
+    <Stack.Navigator
+      initialRouteName={!userAuth?.uid ? 'LoginScreen' : 'StoreContainer'}>
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginContainer}
+        options={{headerShown: false}}
+      />
+      <>
         <Stack.Screen
           name="StoreContainer"
           component={StoreContainer}
           options={{headerShown: false}}
         />
-      )}
+        <Stack.Screen
+          name="ItemDetailsContainer"
+          component={ItemDetailsContainer}
+          options={{headerShown: false}}
+        />
+      </>
     </Stack.Navigator>
   );
 };
