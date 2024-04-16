@@ -125,59 +125,40 @@ const StoreContainer = () => {
             styles.welcomeText,
             styles.extraMed,
             styles.welWidth,
-            {fontSize: 20},
+            styles.font20,
           ]}>
           {'Your Cart'}
         </Text>
-        <View style={{flex: 1, flexDirection: 'row'}}>
-          <View
-            style={{
-              padding: 10,
-              borderWidth: 1,
-              borderColor: COLOR.BORDER_DASHBOARD,
-              flex: 1,
-              borderRadius: 10,
-            }}>
+        <View style={styles.flex1R}>
+          <View style={styles.getto}>
             <Text
               numberOfLines={3}
               style={[
                 styles.welcomeText,
                 styles.extraMed,
-                {fontSize: 15, fontWeight: '100', alignSelf: 'flex-start'},
+                styles.libertyStyle,
               ]}>
               {`${Object.keys(cartItems ?? {}).length || 0} Items`}
             </Text>
             <Text
               numberOfLines={3}
-              style={[
-                styles.welcomeText,
-                styles.extraMed,
-                {
-                  fontSize: 15,
-                  fontWeight: '100',
-                  alignSelf: 'flex-start',
-                  marginBottom: MARGIN.SMALL_6,
-                  color: COLOR.BLACK,
-                },
-              ]}>
+              style={[styles.welcomeText, styles.extraMed, styles.liberal]}>
               {`${getCartSum(Object.values(cartItems ?? {})) || 0} INR/-`}
             </Text>
           </View>
-          <View style={{flex: 1}}>
-            <Text
-              numberOfLines={1}
-              style={[
-                styles.welcomeText,
-                styles.extraMed,
-                styles.welWidth,
-                {
-                  fontSize: 20,
-                  color: COLOR.BLACK_BANNER_TEXT,
-                  textDecorationLine: 'underline',
-                },
-              ]}>
-              {'CheckOut'}
-            </Text>
+          <View style={styles.flex1}>
+            <TouchableOpacity onPress={() => setShowModal(true)}>
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.welcomeText,
+                  styles.extraMed,
+                  styles.welWidth,
+                  styles.ret,
+                ]}>
+                {'CheckOut'}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <Text
@@ -218,17 +199,12 @@ const StoreContainer = () => {
                     });
                     setTimeout(() => navigation.navigate('LoginScreen'), 1000);
                   })
-                  .catch(err => {})
+                  .catch(err => {
+                    console.log(err);
+                  })
               }
-              style={{
-                justifyContent: 'center',
-                marginLeft: MARGIN.EXTRA_LARGE_24 - 8,
-                backgroundColor: COLOR.WHITE,
-                marginBottom: MARGIN.SMALL,
-              }}>
-              <Text style={{color: COLOR.RED, textDecorationLine: 'underline'}}>
-                Sign Out
-              </Text>
+              style={styles.signout}>
+              <Text style={styles.signoutText}>Sign Out</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.iconHolder}>
@@ -307,22 +283,12 @@ const StoreContainer = () => {
             )}
           </ScrollView>
           <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              flex: 1,
-              backgroundColor: COLOR.BLACK,
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginVertical: 25,
-              maxHeight: 60,
-              borderRadius: 10,
-              marginHorizontal: MARGIN.EXTRA_LARGE,
-            }}>
-            <Text
-              style={{
-                color: COLOR.WHITE,
-                fontSize: 15,
-              }}>
+            onPress={() => {
+              dispatch({type: SET_PRODUCT_LIST_ACTIONS.CLEAR_CART});
+              setShowModal(false);
+            }}
+            style={styles.buyBtn}>
+            <Text style={styles.payText}>
               {`Pay ${getCartSum(Object.values(cartItems))} INR/-`}
             </Text>
           </TouchableOpacity>
@@ -332,6 +298,49 @@ const StoreContainer = () => {
   );
 };
 const styles = StyleSheet.create({
+  font20: {fontSize: 20},
+  payText: {
+    color: COLOR.WHITE,
+    fontSize: 15,
+  },
+  signoutText: {color: COLOR.RED, textDecorationLine: 'underline'},
+  flex1R: {flex: 1, flexDirection: 'row'},
+  ret: {
+    fontSize: 20,
+    color: COLOR.BLACK_BANNER_TEXT,
+    textDecorationLine: 'underline',
+  },
+  liberal: {
+    fontSize: 15,
+    fontWeight: '100',
+    alignSelf: 'flex-start',
+    marginBottom: MARGIN.SMALL_6,
+    color: COLOR.BLACK,
+  },
+  libertyStyle: {fontSize: 15, fontWeight: '100', alignSelf: 'flex-start'},
+  signout: {
+    justifyContent: 'center',
+    marginLeft: MARGIN.EXTRA_LARGE_24 - 8,
+    backgroundColor: COLOR.WHITE,
+    marginBottom: MARGIN.SMALL,
+  },
+  buyBtn: {
+    flex: 1,
+    backgroundColor: COLOR.BLACK,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 25,
+    maxHeight: 60,
+    borderRadius: 10,
+    marginHorizontal: MARGIN.EXTRA_LARGE,
+  },
+  getto: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: COLOR.BORDER_DASHBOARD,
+    flex: 1,
+    borderRadius: 10,
+  },
   flex1: {flex: 1},
   iconH: {flex: 1, alignItems: 'center'},
   flexbeg: {flexDirection: 'row', alignItems: 'flex-start'},

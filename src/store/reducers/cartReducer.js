@@ -40,6 +40,12 @@ const cartReducer = (state = initialState, action) => {
         cartItems: omit(state.cartItems, action.payload.idToRemove),
       };
     }
+    case SET_PRODUCT_LIST_ACTIONS.CLEAR_CART: {
+      return {
+        ...state,
+        cartItems: {},
+      };
+    }
   }
 
   return state;
