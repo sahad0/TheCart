@@ -61,10 +61,7 @@ const LoginContainer = () => {
             onPress={() =>
               onGoogleButtonPress()
                 .then(() => {
-                  const userDetails =
-                    auth().currentUser?.['_auth']?.['_nativeModule']?.[
-                      'APP_USER'
-                    ];
+                  const userDetails = auth().currentUser;
                   dispatch({
                     type: LOGIN_ACTIONS.SET_AUTH_DETAILS,
                     payload: userDetails,

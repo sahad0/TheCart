@@ -11,7 +11,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {MARGIN} from '../../constant';
+import {COLOR, MARGIN} from '../../constant';
 import {useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 
@@ -42,20 +42,19 @@ const QRCameraViewContainer = () => {
       onRead={onSuccess}
       flashMode={RNCamera.Constants.FlashMode.torch}
       topContent={
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: 40,
-          }}>
+        <View style={styles.qrTop}>
           <Text style={styles.centerText}>
             Go on <Text style={styles.textBold}>Scan QR Code</Text> on your
             device . Works when gtin number matches the product.
           </Text>
           <TouchableOpacity
             onPress={() => navigation?.goBack?.()}
-            style={{marginRight: MARGIN.SMALL_7 * 3}}>
-            <MaterialCommunityIcons name="close" size={30} />
+            style={styles.close}>
+            <MaterialCommunityIcons
+              name="close"
+              size={30}
+              color={COLOR.BLACK}
+            />
           </TouchableOpacity>
         </View>
       }
@@ -63,6 +62,13 @@ const QRCameraViewContainer = () => {
   );
 };
 const styles = StyleSheet.create({
+  close: {marginRight: MARGIN.SMALL_7 * 3},
+  qrTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 40,
+    backgroundColor: COLOR.WHITE,
+  },
   centerText: {
     flex: 1,
     fontSize: 18,

@@ -5,6 +5,13 @@ export const getProductsAsObj = (productArr = []) => {
   }, {});
 };
 
+export const getCartSum = (productArr = []) => {
+  return productArr.reduce((prev, curr) => {
+    prev = prev + curr?.price;
+    return prev;
+  }, 0);
+};
+
 export const getImageSource = index => {
   let imageSource;
   switch (index + 1) {
