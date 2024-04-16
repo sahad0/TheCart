@@ -39,7 +39,7 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
               marginRight: MARGIN.EXTRA_LARGE,
             },
           ]}>
-          {cartItemsAsObj?.[cartItemObj?.['sku_code']]?.name}
+          {cartItemsAsObj?.[cartItemObj?.['gtin']]?.name}
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
@@ -56,12 +56,12 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
             ]}>
             {(cartItemObj?.count || '') +
               ' X ' +
-              cartItemsAsObj?.[cartItemObj?.['sku_code']]?.mrp?.mrp +
+              cartItemsAsObj?.[cartItemObj?.['gtin']]?.mrp?.mrp +
               ' = ' +
               cartItemObj.price}
           </Text>
           <TouchableOpacity
-            onPress={() => handleRemoveItemFromCart(cartItemObj?.['sku_code'])}>
+            onPress={() => handleRemoveItemFromCart(cartItemObj?.['gtin'])}>
             <Text
               numberOfLines={1}
               style={[

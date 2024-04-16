@@ -29,11 +29,11 @@ const ItemDetailsContainer = ({item = {}}) => {
     mrp: {mrp},
     main_category,
     created_by,
-    sku_code,
+    gtin,
   } = routeParams?.item || {};
 
-  const initialState = cartItems?.[sku_code]
-    ? omit(cartItems?.[sku_code], 'sku_code')
+  const initialState = cartItems?.[gtin]
+    ? omit(cartItems?.[gtin], 'gtin')
     : null || {count: 0, price: 0};
   const [quanity, setQuantity] = useState(initialState);
 
@@ -66,7 +66,7 @@ const ItemDetailsContainer = ({item = {}}) => {
   const handleAddToCart = () => {
     dispatch({
       type: SET_PRODUCT_LIST_ACTIONS.SET_CART_ITEMS,
-      payload: {[sku_code]: Object.assign(quanity, {sku_code})},
+      payload: {[gtin]: Object.assign(quanity, {gtin})},
     });
     return navigation.navigate('StoreContainer');
   };
