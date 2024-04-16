@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {MARGIN} from '../../constant';
 import {useSelector} from 'react-redux';
+import {isEmpty} from 'lodash';
 
 const QRCameraViewContainer = () => {
   const navigation = useNavigation();
@@ -24,13 +25,17 @@ const QRCameraViewContainer = () => {
   });
 
   const onSuccess = e => {
-    if (cartItemsAsObj?.[e.data]) {
-      navigation.navigate('ItemDetailsContainer', {
-        item: cartItemsAsObj?.[e.data],
-      });
+    const item = cartItemsAsObj?.[e.data?.toString?.() || e.data] || {};
+    if (isEmpty(item)) {
+      ToastAndroid.show(` Product not Found !`, ToastAndroid.SHORT);
+      return navigation?.goBack?.();
     }
-    ToastAndroid.show('No Product Found !', ToastAndroid.SHORT);
-    return navigation?.goBack?.();
+    return navigation.navigate('ItemDetailsContainer', {
+      item,
+      index: item?.index,
+    });
+
+    // return navigation?.goBack?.();
   };
   return (
     <QRCodeScanner

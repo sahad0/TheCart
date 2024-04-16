@@ -2,10 +2,16 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {COLOR, MARGIN, SET_PRODUCT_LIST_ACTIONS} from '../../constant';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {getImageSource} from '../utils/utils';
 
 const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
   const dispatch = useDispatch();
+  const {productList} = useSelector(state => {
+    return {
+      productList: state.cartReducer.productList,
+    };
+  });
 
   const handleRemoveItemFromCart = sku_id => {
     dispatch({
@@ -13,7 +19,6 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
       payload: {idToRemove: sku_id},
     });
   };
-
   return (
     <View
       style={{
@@ -24,7 +29,13 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
       }}>
       <FastImage
         style={styles.logo}
-        source={require('../assets/tomato.png')}
+        source={
+          getImageSource(
+            (productList || []).findIndex(
+              obj => obj['gtin'] === cartItemObj?.['gtin'],
+            ),
+          ) || 1
+        }
         resizeMode={FastImage.resizeMode.contain}
       />
       <View>
@@ -77,8 +88,8 @@ const styles = StyleSheet.create({
     color: COLOR.GRAY900,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
     marginTop: MARGIN.EXTRA_LARGE_24,
     marginBottom: 0,
     marginLeft: MARGIN.SMALL_7 * 2,

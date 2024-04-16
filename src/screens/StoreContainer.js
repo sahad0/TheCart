@@ -11,17 +11,12 @@ import {
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSelector, useDispatch} from 'react-redux';
-import {
-  COLOR,
-  FONT_SIZE,
-  MARGIN,
-  SET_PRODUCT_LIST_ACTIONS,
-} from '../../constant';
+import {COLOR, MARGIN, SET_PRODUCT_LIST_ACTIONS} from '../../constant';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import CartProductCard from '../components/CartProductCard';
-import {getProductsAsObj} from '../utils/utils';
+import {getImageSource, getProductsAsObj} from '../utils/utils';
 import {isEmpty} from 'lodash';
 
 const StoreContainer = () => {
@@ -77,6 +72,7 @@ const StoreContainer = () => {
   }, []);
 
   const renderItem = ({item, index}) => {
+    let imageSource = getImageSource(index);
     return (
       <TouchableOpacity
         onPress={() =>
@@ -85,7 +81,7 @@ const StoreContainer = () => {
         style={styles.itemOuter}>
         <FastImage
           style={styles.logo}
-          source={require('../assets/tomato.png')}
+          source={imageSource}
           resizeMode={FastImage.resizeMode.contain}
         />
         <View style={{flexDirection: 'row'}}>
@@ -145,7 +141,7 @@ const StoreContainer = () => {
                   styles.extraMed,
                   {color: COLOR.GRAY900},
                 ]}>
-                {userSubName}
+                {userSubName || 'Have some brownie !'}
               </Text>
             </View>
           </View>

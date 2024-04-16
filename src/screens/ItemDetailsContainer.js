@@ -13,8 +13,9 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEqual, omit} from 'lodash';
+import {getImageSource} from '../utils/utils';
 
-const ItemDetailsContainer = ({item = {}}) => {
+const ItemDetailsContainer = () => {
   const navigation = useNavigation();
   const routeParams = useRoute().params;
   const dispatch = useDispatch();
@@ -120,7 +121,7 @@ const ItemDetailsContainer = ({item = {}}) => {
       </Text>
       <FastImage
         style={styles.logo}
-        source={require('../assets/tomato.png')}
+        source={getImageSource(routeParams?.index)}
         resizeMode={FastImage.resizeMode.contain}
       />
       <View style={{flexDirection: 'row'}}>
