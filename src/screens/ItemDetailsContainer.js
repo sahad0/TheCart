@@ -95,7 +95,7 @@ const ItemDetailsContainer = () => {
             fontSize: 18,
             paddingBottom: 0,
           }}>
-          {'#'.concat(routeParams?.index) || ''}
+          {'#'.concat(routeParams?.index || 99) || ''}
         </Text>
       </View>
       <Text
