@@ -18,9 +18,10 @@ import {isEmpty} from 'lodash';
 const QRCameraViewContainer = () => {
   const navigation = useNavigation();
 
-  const {cartItemsAsObj} = useSelector(state => {
+  const {cartItemsAsObj, productList} = useSelector(state => {
     return {
       cartItemsAsObj: state.cartReducer.cartItemsAsObj || {},
+      productList: state.cartReducer.productList,
     };
   });
 
@@ -32,7 +33,7 @@ const QRCameraViewContainer = () => {
     }
     return navigation.navigate('ItemDetailsContainer', {
       item,
-      index: item?.index,
+      index: (productList || []).findIndex(obj => obj['gtin'] === e.data),
     });
 
     // return navigation?.goBack?.();
