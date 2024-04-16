@@ -23,19 +23,9 @@ const ScreenStacks = () => {
             component={LoginContainer}
             options={{headerShown: false}}
           />
-          <Stack.Screen
-            name="StoreContainer"
-            component={StoreContainer}
-            options={{headerShown: false}}
-          />
         </>
       ) : (
         <>
-          <Stack.Screen
-            name="LoginScreen"
-            component={LoginContainer}
-            options={{headerShown: false}}
-          />
           <Stack.Screen
             name="StoreContainer"
             component={StoreContainer}

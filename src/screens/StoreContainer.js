@@ -197,7 +197,6 @@ const StoreContainer = () => {
                       type: LOGIN_ACTIONS.SET_AUTH_DETAILS,
                       payload: {},
                     });
-                    setTimeout(() => navigation.navigate('LoginScreen'), 1000);
                   })
                   .catch(err => {
                     console.log(err);
