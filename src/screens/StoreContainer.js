@@ -306,6 +306,26 @@ const StoreContainer = () => {
               ))
             )}
           </ScrollView>
+          <TouchableOpacity
+            onPress={() => {}}
+            style={{
+              flex: 1,
+              backgroundColor: COLOR.BLACK,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginVertical: 25,
+              maxHeight: 60,
+              borderRadius: 10,
+              marginHorizontal: MARGIN.EXTRA_LARGE,
+            }}>
+            <Text
+              style={{
+                color: COLOR.WHITE,
+                fontSize: 15,
+              }}>
+              {`Pay ${getCartSum(Object.values(cartItems))} INR/-`}
+            </Text>
+          </TouchableOpacity>
         </Modal>
       ) : null}
     </SafeAreaView>
