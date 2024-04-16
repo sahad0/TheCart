@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginContainer from '../LoginContainer';
 import StoreContainer from '../StoreContainer';
 import ItemDetailsContainer from '../ItemDetailsContainer';
+import QRCameraViewContainer from '../QRCameraViewContainer';
 
 const Stack = createStackNavigator();
 
@@ -20,18 +21,21 @@ const ScreenStacks = () => {
         component={LoginContainer}
         options={{headerShown: false}}
       />
-      <>
-        <Stack.Screen
-          name="StoreContainer"
-          component={StoreContainer}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ItemDetailsContainer"
-          component={ItemDetailsContainer}
-          options={{headerShown: false}}
-        />
-      </>
+      <Stack.Screen
+        name="StoreContainer"
+        component={StoreContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ItemDetailsContainer"
+        component={ItemDetailsContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="QRCameraViewContainer"
+        component={QRCameraViewContainer}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

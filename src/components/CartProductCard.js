@@ -19,6 +19,7 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
       style={{
         borderWidth: 0.5,
         borderColor: COLOR.BORDER_DASHBOARD,
+        padding: 10,
         flexDirection: 'row',
       }}>
       <FastImage
@@ -29,31 +30,13 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
       <View>
         <Text
           numberOfLines={1}
-          style={[
-            styles.welcomeText,
-            styles.extraMed,
-            {
-              marginTop: MARGIN.SMALL_7 * 3,
-              fontSize: 15,
-              paddingHorizontal: MARGIN.EXTRA_LARGE_24,
-              marginRight: MARGIN.EXTRA_LARGE,
-            },
-          ]}>
+          style={[styles.welcomeText, styles.extraMed, styles.vtext]}>
           {cartItemsAsObj?.[cartItemObj?.['gtin']]?.name}
         </Text>
         <View style={{flexDirection: 'row'}}>
           <Text
             numberOfLines={1}
-            style={[
-              styles.welcomeText,
-              styles.extraMed,
-              {
-                marginTop: MARGIN.SMALL_7 * 3,
-                fontSize: 15,
-                paddingHorizontal: MARGIN.EXTRA_LARGE_24,
-                marginRight: MARGIN.EXTRA_LARGE,
-              },
-            ]}>
+            style={[styles.welcomeText, styles.extraMed, styles.vtext]}>
             {(cartItemObj?.count || '') +
               ' X ' +
               cartItemsAsObj?.[cartItemObj?.['gtin']]?.mrp?.mrp +
@@ -73,6 +56,7 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
                   paddingHorizontal: MARGIN.EXTRA_LARGE_24,
                   marginRight: MARGIN.EXTRA_LARGE,
                   textDecorationLine: 'underline',
+                  color: COLOR.RED,
                 },
               ]}>
               {'Remove'}
@@ -85,6 +69,13 @@ const CartProductCard = ({cartItemObj, index, cartItemsAsObj = {}}) => {
 };
 
 const styles = StyleSheet.create({
+  vtext: {
+    marginTop: MARGIN.SMALL_7 * 3,
+    fontSize: 15,
+    paddingHorizontal: MARGIN.EXTRA_LARGE_24,
+    marginRight: MARGIN.EXTRA_LARGE,
+    color: COLOR.GRAY900,
+  },
   logo: {
     width: 80,
     height: 80,

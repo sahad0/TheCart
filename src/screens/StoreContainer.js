@@ -140,13 +140,17 @@ const StoreContainer = () => {
             <View style={{flexDirection: 'row'}}>
               <Text
                 numberOfLines={1}
-                style={[styles.welcomeText, styles.extraMed]}>
+                style={[
+                  styles.welcomeText,
+                  styles.extraMed,
+                  {color: COLOR.GRAY900},
+                ]}>
                 {userSubName}
               </Text>
             </View>
           </View>
           <View style={styles.iconHolder}>
-            <View>
+            <TouchableOpacity onPress={() => setShowModal(true)}>
               {isEmpty(Object.values(cartItems ?? {})) ? null : (
                 <View
                   style={{
@@ -159,20 +163,23 @@ const StoreContainer = () => {
                   }}
                 />
               )}
-              <TouchableOpacity onPress={() => setShowModal(true)}>
+              <View>
                 <MaterialCommunityIcons
                   style={{marginRight: MARGIN.SMALL_4 * 4}}
                   name="cart-outline"
                   size={27}
                   color={COLOR.BLACK_BANNER_TEXT}
                 />
-              </TouchableOpacity>
-            </View>
-            <MaterialCommunityIcons
-              name="barcode-scan"
-              size={27}
-              color={COLOR.BLACK_BANNER_TEXT}
-            />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('QRCameraViewContainer')}>
+              <MaterialCommunityIcons
+                name="barcode-scan"
+                size={27}
+                color={COLOR.BLACK_BANNER_TEXT}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -211,7 +218,11 @@ const StoreContainer = () => {
             <TouchableOpacity
               onPress={() => setShowModal(false)}
               style={{marginRight: MARGIN.SMALL_7 * 3}}>
-              <MaterialCommunityIcons name="close" size={30} />
+              <MaterialCommunityIcons
+                name="close"
+                size={30}
+                color={COLOR.BLACK}
+              />
             </TouchableOpacity>
           </View>
           <ScrollView style={{flex: 1}}>
